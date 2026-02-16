@@ -2,7 +2,7 @@
 
 SLRparser buildSLR()
 {
-    //  GRAMMAR
+    //  grammar
     std::vector<Production> grammar = {
         { NonTerminal::E, {"E", "+", "T"} },
         { NonTerminal::E, {"E", "-", "T"} },
@@ -15,7 +15,7 @@ SLRparser buildSLR()
         { NonTerminal::F, {"NUM"} }
     };
 
-    //  ACTION
+    //  action
     std::unordered_map<size_t, std::unordered_map<Token, Action>> action;
 
     // state 0
@@ -122,7 +122,7 @@ SLRparser buildSLR()
     action[15][Token::RPAREN] = {Action::Type::Reduce, 6};
     action[15][Token::END]    = {Action::Type::Reduce, 6};
 
-    //  GOTO
+    //  goto
     std::unordered_map<size_t, std::unordered_map<NonTerminal, size_t>> go_to;
 
     go_to[0][NonTerminal::E] = 1;
@@ -142,8 +142,5 @@ SLRparser buildSLR()
     go_to[8][NonTerminal::F] = 13;
     go_to[9][NonTerminal::F] = 14;
 
-    return SLRparser(
-        std::move(grammar),
-        std::move(action),
-        std::move(go_to));
+    return SLRparser(std::move(grammar),std::move(action),std::move(go_to));
 }
