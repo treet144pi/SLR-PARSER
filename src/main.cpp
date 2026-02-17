@@ -1,7 +1,8 @@
-#include <iostream>
-#include <vector>
 #include "slrbuild.h"
 #include "token.h"
+#include <iostream>
+#include <vector>
+
 
 extern int yylex();
 int main()

@@ -1,6 +1,6 @@
 #include "parser.h"
-#include <iostream>
 #include "slrbuild.h"
+#include <iostream>
 void runner(const std::vector<Token>& tokens,const std::string& name)
 {
     std::cout << "\n ===TEST: " << name << " =================)\n";

@@ -2,7 +2,7 @@
 
 SLRparser buildSLR()
 {
-    //  grammar
+    //  grammar arithmetic language
     std::vector<Production> grammar = {
         { NonTerminal::E, {"E", "+", "T"} },
         { NonTerminal::E, {"E", "-", "T"} },
@@ -19,15 +19,13 @@ SLRparser buildSLR()
     std::unordered_map<size_t, std::unordered_map<Token, Action>> action;
 
     // state 0
-    action[0][Token::ID]      = {Action::Type::Shift, 5};
-    action[0][Token::NUM]     = {Action::Type::Shift, 5};
-    action[0][Token::LPAREN]  = {Action::Type::Shift, 4};
-
+    action[0][Token::ID]     = {Action::Type::Shift, 5};
+    action[0][Token::NUM]    = {Action::Type::Shift, 5};
+    action[0][Token::LPAREN] = {Action::Type::Shift, 4};
     // state 1
-    action[1][Token::PLUS]  = {Action::Type::Shift, 6};
-    action[1][Token::MINUS] = {Action::Type::Shift, 7};
-    action[1][Token::END]   = {Action::Type::Accept, 0};
-
+    action[1][Token::PLUS]   = {Action::Type::Shift, 6};
+    action[1][Token::MINUS]  = {Action::Type::Shift, 7};
+    action[1][Token::END]    = {Action::Type::Accept, 0};
     // state 2 (E → T•)
     action[2][Token::PLUS]   = {Action::Type::Reduce, 2};
     action[2][Token::MINUS]  = {Action::Type::Reduce, 2};
@@ -45,9 +43,9 @@ SLRparser buildSLR()
     action[3][Token::END]    = {Action::Type::Reduce, 5};
 
     // state 4 ('(')
-    action[4][Token::ID]      = {Action::Type::Shift, 5};
-    action[4][Token::NUM]     = {Action::Type::Shift, 5};
-    action[4][Token::LPAREN]  = {Action::Type::Shift, 4};
+    action[4][Token::ID]     = {Action::Type::Shift, 5};
+    action[4][Token::NUM]    = {Action::Type::Shift, 5};
+    action[4][Token::LPAREN] = {Action::Type::Shift, 4};
 
     // state 5 (F → ID• or F → NUM•)
     action[5][Token::PLUS]   = {Action::Type::Reduce, 7};
@@ -58,29 +56,29 @@ SLRparser buildSLR()
     action[5][Token::END]    = {Action::Type::Reduce, 7};
 
     // state 6 ('+')
-    action[6][Token::ID]      = {Action::Type::Shift, 5};
-    action[6][Token::NUM]     = {Action::Type::Shift, 5};
-    action[6][Token::LPAREN]  = {Action::Type::Shift, 4};
+    action[6][Token::ID]     = {Action::Type::Shift, 5};
+    action[6][Token::NUM]    = {Action::Type::Shift, 5};
+    action[6][Token::LPAREN] = {Action::Type::Shift, 4};
 
     // state 7 ('-')
-    action[7][Token::ID]      = {Action::Type::Shift, 5};
-    action[7][Token::NUM]     = {Action::Type::Shift, 5};
-    action[7][Token::LPAREN]  = {Action::Type::Shift, 4};
+    action[7][Token::ID]     = {Action::Type::Shift, 5};
+    action[7][Token::NUM]    = {Action::Type::Shift, 5};
+    action[7][Token::LPAREN] = {Action::Type::Shift, 4};
 
     // state 8 ('*')
-    action[8][Token::ID]      = {Action::Type::Shift, 5};
-    action[8][Token::NUM]     = {Action::Type::Shift, 5};
-    action[8][Token::LPAREN]  = {Action::Type::Shift, 4};
+    action[8][Token::ID]     = {Action::Type::Shift, 5};
+    action[8][Token::NUM]    = {Action::Type::Shift, 5};
+    action[8][Token::LPAREN] = {Action::Type::Shift, 4};
 
     // state 9 ('/')
-    action[9][Token::ID]      = {Action::Type::Shift, 5};
-    action[9][Token::NUM]     = {Action::Type::Shift, 5};
-    action[9][Token::LPAREN]  = {Action::Type::Shift, 4};
+    action[9][Token::ID]     = {Action::Type::Shift, 5};
+    action[9][Token::NUM]    = {Action::Type::Shift, 5};
+    action[9][Token::LPAREN] = {Action::Type::Shift, 4};
 
     // state 10 (F → (E•))
-    action[10][Token::PLUS]   = {Action::Type::Shift, 6};
-    action[10][Token::MINUS]  = {Action::Type::Shift, 7};
-    action[10][Token::RPAREN] = {Action::Type::Shift, 15};
+    action[10][Token::PLUS]  = {Action::Type::Shift, 6};
+    action[10][Token::MINUS] = {Action::Type::Shift, 7};
+    action[10][Token::RPAREN]= {Action::Type::Shift, 15};
 
     // state 11 (E → E + T•)
     action[11][Token::PLUS]   = {Action::Type::Reduce, 0};
@@ -142,5 +140,7 @@ SLRparser buildSLR()
     go_to[8][NonTerminal::F] = 13;
     go_to[9][NonTerminal::F] = 14;
 
+
+    //out SLR table
     return SLRparser(std::move(grammar),std::move(action),std::move(go_to));
 }

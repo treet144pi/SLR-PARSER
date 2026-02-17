@@ -1,0 +1,2 @@
+/usr/bin/ar qc libslr_core.a  CMakeFiles/slr_core.dir/src/parser.cpp.o CMakeFiles/slr_core.dir/src/outputstates.cpp.o CMakeFiles/slr_core.dir/src/slrbuild.cpp.o
+/usr/bin/ranlib libslr_core.a

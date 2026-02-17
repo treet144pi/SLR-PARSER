@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/slr_tests.dir/tests/tests.cpp.o  -o slr_tests  libslr_core.a 

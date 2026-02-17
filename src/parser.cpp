@@ -74,7 +74,7 @@ void SLRparser::parse(const std::vector<Token>& tokens)
 
     while (true)
     {
-        size_t state      = state_stack_.top();
+        size_t state = state_stack_.top();
 
         if (!action_.count(state) || !action_[state].count(tokens[pos]))
         {
@@ -83,8 +83,15 @@ void SLRparser::parse(const std::vector<Token>& tokens)
         }
 
         Action a = action_[state][tokens[pos]];
+
+        auto action_string = (a.type_ == Action::Type::Reduce) ?
+            actionString(a, &grammar_[a.value_])
+            :actionString(a);
+
         visualizer_.printState(stackString(symbol_stack_), inputString(tokens, pos),
-            (a.type_ == Action::Type::Reduce) ? actionString(a, &grammar_[a.value_]):actionString(a));
+                               action_string);
+
+
 
         switch (a.type_)
         {
@@ -95,6 +102,7 @@ void SLRparser::parse(const std::vector<Token>& tokens)
                 pos++;
                 break;
             }
+
             case Action::Type::Reduce:
             {
                 const auto& p = grammar_[a.value_];
@@ -110,17 +118,18 @@ void SLRparser::parse(const std::vector<Token>& tokens)
                 state_stack_.push(next_state);
                 break;
             }
+
             case Action::Type::Accept:
             {
                 return;
             }
+
             default:
             {
                 std::cerr << "SYNTAX ERROR" << '\n';
                 return;
             }
         }
-
 
 
     }
