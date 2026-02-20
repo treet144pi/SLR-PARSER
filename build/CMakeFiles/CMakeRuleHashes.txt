@@ -1,2 +1,0 @@
-# Hashes of file build rules.
-aecb18797a6f071b2540dc3b4acccfb0 lexer.cpp

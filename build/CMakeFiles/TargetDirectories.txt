@@ -1,5 +1,0 @@
-/home/timur/с++/c++mipt/SLR-PARSER/build/CMakeFiles/rebuild_cache.dir
-/home/timur/с++/c++mipt/SLR-PARSER/build/CMakeFiles/edit_cache.dir
-/home/timur/с++/c++mipt/SLR-PARSER/build/CMakeFiles/slr_parser.dir
-/home/timur/с++/c++mipt/SLR-PARSER/build/CMakeFiles/slr_tests.dir
-/home/timur/с++/c++mipt/SLR-PARSER/build/CMakeFiles/slr_core.dir

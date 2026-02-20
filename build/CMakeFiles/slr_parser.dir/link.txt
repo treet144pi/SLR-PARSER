@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/slr_parser.dir/src/main.cpp.o CMakeFiles/slr_parser.dir/lexer.cpp.o  -o slr_parser  libslr_core.a 
